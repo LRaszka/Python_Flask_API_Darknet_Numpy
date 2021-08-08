@@ -10,9 +10,9 @@ obsazeno_frame = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 neobsazeno_frame = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 # Délka obsazenosti parkovacího místa
-# cas = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-# cas_last = 0
-# cas_real = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+cas = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+cas_last = 0
+cas_real = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
 # den = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 # den_hod = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -29,8 +29,8 @@ for i in range(32):
     if Obsazeno_User == "t":
         obsazeno_frame[i] = obsazeno_frame[i] + 1
         if obsazeno_frame[i] == 1:
-            now_time[i] = time.ctime()
-            # cas[i] = time.time()
+            # now_time[i] = time.ctime()
+            cas[i] = time.time()
         print(str(i) + " Počet obsazeno frame: " + str(obsazeno_frame[i]))
         neobsazeno_frame[i] = 0
         obsazeno[i] = True
@@ -40,13 +40,13 @@ for i in range(32):
         if neobsazeno_frame[i] >= 8:
             obsazeno_frame[i] = 0
             obsazeno[i] = False
-            now_time[i] = 0
-            # cas[i] = 0
+            # now_time[i] = 0
+            cas[i] = 0
 
-# cas_last = time.time()
-# for x in range(32):
-#     cas_real[x] = cas_last - cas[x]
-#     now_time[x] = cas_real[x]
+cas_last = time.time()
+for x in range(32):
+    cas_real[x] = cas_last - cas[x]
+    now_time[x] = int(cas_real[x])
 
 #     if cas_real[x] >= 60:
 #         min_sec[x] = cas_real[x] / 60
